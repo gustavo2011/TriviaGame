@@ -67,9 +67,10 @@ $(".gameContent").on("click", ".options", function()
 
 $('#resetButton').on('click', function() // On Click, restarts game and timer
 {
-   reset();
+    gameQuestions();
    startCountdown(); 
-
+   reset();
+   
 });
 
 
@@ -143,6 +144,7 @@ function finalTally()
     html = "<p class = 'text-center closer'> " + "This is how you did " + "</p>" + "<p class = 'text-center results'>" + "Correct: " + correct + "</p>" + "<p class = 'text-center results'>" + "Incorrect: " + inCorrect + "</p>" + "<p class = 'text-center results'>" + "Unanswered: " + unAnswered + "</p>" ;
     $('.gameContent').html(html);
     clearInterval(timer);
+    $('#resetButton').show;
 }
 
 function nextQuestion()
