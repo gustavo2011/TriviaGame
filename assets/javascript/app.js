@@ -39,7 +39,7 @@ var questions =
 
 //start game with hidden divs
 $(".gameContent").hide();
-$("#doneButton").hide();
+
 $('#resetButton').hide();
 
 //on-click functions
@@ -48,7 +48,7 @@ $("#startButton").on("click" , function() {
     console.log("this button works");
     $(".gameContent").show();
     $("#startButton").hide();
-    $("#doneButton").show();
+  
     
 
  startCountdown();
@@ -56,16 +56,9 @@ $("#startButton").on("click" , function() {
     
 });
 
-$('#doneButton').on("click", function (){
-    console.log("this button works");
-    finalTally();
-    $('#resetButton').show();
-
-});
 
 
-
-$(".gameContent").on("click", ".options", function() // On Click, takes user selected option and runs it thru the CheckWinLose function
+$(".gameContent").on("click", ".options", function() 
 {
     selectedOption = $(this).text();
     checker();
@@ -109,36 +102,36 @@ function gameQuestions() {
      $('.gameContent').html(html);
     (startCountdown);
 }
-
-function timeOut()   // If timer hits 0
+// If timer hits 0
+function timeOut()   
 {
     html = "<p class = 'text-center timesUp'> " + "Aw, looks like you timed out! The correct answer was " + currentQuestion.answer + "</p>"; 
     $('.gameContent').html(html);
     unAnswered++;
     currentQuestionNumber++;
-    setTimeout(next, 4000);  //  change to 4000 or other amount
+    setTimeout(nextQuestion, 4000);  
     console.log ("current number is: " + currentQuestionNumber);
 }
 
 function checker()
 {
-    if(selectedOption === currentQuestion.answer) // If user selected option is correct 
+    if(selectedOption === currentQuestion.answer) 
     {
         html = "<p class = 'text-center options'>" + "Thats Correct!" + "</p>";
         $('.gameContent').html(html);
         correct++;
         currentQuestionNumber++;
         clearInterval(timer);
-        setTimeout(next, 5000);
+        setTimeout(nextQuestion, 5000);
     }
-    else if(selectedOption !== currentQuestion.answer) // If user selected option is incorrect
+    else if(selectedOption !== currentQuestion.answer) 
     {
         html = "<p class = 'text-center options'>" + "Thats Incorrect! The correct answer was " + currentQuestion.answer + "</p>";
         $('.gameContent').html(html);
         inCorrect++;
         currentQuestionNumber++;
         clearInterval(timer);;
-        setTimeout(next, 5000);
+        setTimeout(nextQuestion, 5000);
     }
     console.log ("current number is: " + currentQuestionNumber);
 
@@ -154,13 +147,13 @@ function finalTally()
 
 function nextQuestion()
 {
-    if(currentQuestionNumber < 5) // Enables us to loop thru all the questions
+    if(currentQuestionNumber < 5) 
     {
         gameQuestions();
         time = 30;
         startCountdown();
     }
-    else // If all questions have been looped thru this sends up to the finally tally page
+    else 
     {
         finalTally();
     }
