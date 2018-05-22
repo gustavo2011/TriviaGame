@@ -58,19 +58,20 @@ $("#startButton").on("click" , function() {
 
 
 
-$(".gameContent").on("click", ".options", function() 
-{
+$(".gameContent").on("click", ".options", function() {
+    console.log("this works");
     selectedOption = $(this).text();
     checker();
 });
 
 
-$('#resetButton').on('click', function() // On Click, restarts game and timer
+$(".gameContent").on('click', ".reset-button", function() // On Click, restarts game and timer
 {
-    gameQuestions();
+    console.log("this button works");
+  
    startCountdown(); 
    reset();
-   
+
 });
 
 
@@ -110,7 +111,7 @@ function timeOut()
     $('.gameContent').html(html);
     unAnswered++;
     currentQuestionNumber++;
-    setTimeout(nextQuestion, 4000);  
+    setTimeout(nextQuestion, 2000);  
     console.log ("current number is: " + currentQuestionNumber);
 }
 
@@ -123,7 +124,7 @@ function checker()
         correct++;
         currentQuestionNumber++;
         clearInterval(timer);
-        setTimeout(nextQuestion, 5000);
+        setTimeout(nextQuestion, 2000);
     }
     else if(selectedOption !== currentQuestion.answer) 
     {
@@ -132,7 +133,7 @@ function checker()
         inCorrect++;
         currentQuestionNumber++;
         clearInterval(timer);;
-        setTimeout(nextQuestion, 5000);
+        setTimeout(nextQuestion, 2000);
     }
     console.log ("current number is: " + currentQuestionNumber);
 
@@ -141,10 +142,10 @@ function checker()
 
 function finalTally()
 {
-    html = "<p class = 'text-center closer'> " + "This is how you did " + "</p>" + "<p class = 'text-center results'>" + "Correct: " + correct + "</p>" + "<p class = 'text-center results'>" + "Incorrect: " + inCorrect + "</p>" + "<p class = 'text-center results'>" + "Unanswered: " + unAnswered + "</p>" ;
+    html = "<p class = 'text-center closer'> " + "This is how you did " + "</p>" + "<p class = 'text-center results'>" + "Correct: " + correct + "</p>" + "<p class = 'text-center results'>" + "Incorrect: " + inCorrect + "</p>" + "<p class = 'text-center results'>" + "Unanswered: " + unAnswered + "</p>" + "<p class='button'><a class='btn btn-primary btn-lg reset-button ' href='#' role='button'>Reset</a></p>" ;
     $('.gameContent').html(html);
     clearInterval(timer);
-    $('#resetButton').show;
+    
 }
 
 function nextQuestion()
